@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# HTML report output
+index.html
+
+bin/
+
+pyvenv.cfg
+.DS_Store

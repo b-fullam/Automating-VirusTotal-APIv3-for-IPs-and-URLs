@@ -1,0 +1,9 @@
+google.com
+yahoo.com
+python.org
+ttp://bing.com
+https://www.github.com
+http://www.netlify.com
+www.jamstack.org
+htt://www.gatsbyjs.com
+://www.regexpal.com
