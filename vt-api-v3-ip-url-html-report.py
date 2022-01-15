@@ -302,10 +302,6 @@ def urlReportIPLst():
 
 
 
-
-
-
-
 # ////////////////////////////////// START OUTPUT TO HTML
 
 # this function will take either a single html table or an array of html tables, and write them to a CSS styled html file called "index.html"
@@ -418,7 +414,7 @@ def outputHTML():
 
 
 
-# ////////////////////////////////// MAIN FUNCTION
+# ////////////////////////////////// MAIN
 
 def main():
     print("\nAutomated VirusTotal IP and URL Report Requests \nw/HMTL Reporting")
@@ -441,6 +437,6 @@ def main():
         print("\n Please enter a valid option! \n")
         #main()
     
-# ////////////////////////////////// END MAIN FUNCTION
+# ////////////////////////////////// END MAIN
 
 main()
