@@ -1,5 +1,5 @@
 # Automating-VirusTotal-APIv3-for-IPs-and-URLs
-### Automating VirusTotal's API(v3) for IP address and URL analysis with HMTL Reporting
+### Automating VirusTotal's API(v3) for IP address and URL analysis with HTML Reporting
 
 An analyst can choose to enter a single IP address or URL, or select either a list of IP addresses or URLs to be submitted to VirusTotal's API(v3).
 
