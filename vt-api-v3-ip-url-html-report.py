@@ -421,7 +421,7 @@ def outputHTML():
 # ////////////////////////////////// MAIN FUNCTION
 
 def main():
-    print("\nAutomated VirusTotal URL Report Requests \nw/output to HTML styled reports")
+    print("\nAutomated VirusTotal IP and URL Report Requests \nw/HMTL Reporting")
 
     # Prompt user for input of a single IP or single URL, or to import a list of IP addresses, or to import a list of urls
     single_or_multiple_ips = int(input("\nEnter: \n'1' for single IP or URL entry, \n'2' to import a list of URLs, or \n'3' to import a list of IPs: \n\n"))
