@@ -18,6 +18,8 @@ The script also generates a hypertext link to VirusTotal's web-based GUI for eac
 
 The generated HTML report, named "index.html", is saved in the same directory that the Python script resides.
 
+For more information about this script, check out my article on "[Security Automation with Python — IP address and URL analysis via VirusTotal's API v3 with HTML Reporting](https://www.brettfullam.com/security-automation-with-python-dns-and-reverse-dns-lookups/)." 
+
 ## Getting Started
 
 1. Download the script or use git to clone the repository
