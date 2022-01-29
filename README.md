@@ -3,7 +3,9 @@
 
 Enter a single IP address or URL, or select either a list of IP addresses or URLs to be submitted to VirusTotal's API(v3) for analysis.
 
-``` nolinenumbers
+Here are the options included in the script:
+
+``` noLineNumbers
 usage: vt-ip-url-analysis.py [-h] [-s SINGLE_ENTRY] [-i IP_LIST] [-u URL_LIST] [-V]
 
 Python Automated VT API v3 IP address and URL analysis 2.0 by Brett Fullam
@@ -19,11 +21,17 @@ optional arguments:
   -V, --version             show program version
 ```
 
+Here's a sample of the command to run the script using a single entry, google.com, as the input:
+
+``` noLineNumbers
+python3 vt-ip-url-analysis.py -s google.com
+```
+
 The results returned by VT's API(v3) are then filtered for high-level analysis to quickly determine whether entries are harmless or need further investigation.
 
 The script also generates a hypertext link to VirusTotal's web-based GUI for each entry allowing the analyst seamless access to additional information directly from the HTML report.
 
-The generated HTML report, named "index.html", is saved in the same directory that the Python script resides.
+The generated HTML report, named "report.html", is saved in the same directory that the Python script resides.
 
 For more information about this script, check out my article on "[Security Automation with Python — IP address and URL analysis via VirusTotal's API v3 with HTML Reporting](https://www.brettfullam.com/security-automation-with-python-ip-address-and-url-analysis-via-virus-totals-api-v-3-with-html-reporting/)." 
 

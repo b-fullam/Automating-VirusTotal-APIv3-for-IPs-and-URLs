@@ -333,7 +333,7 @@ def urlReportIPLst(arg):
 
 # ////////////////////////////////// START OUTPUT TO HTML
 
-# this function will take either a single html table or an array of html tables, and write them to a CSS styled html file called "index.html"
+# this function will take either a single html table or an array of html tables, and write them to a CSS styled html file called "report.html"
 
 def outputHTML():
 
@@ -416,25 +416,25 @@ def outputHTML():
         </body>
         </html>
     """
-    # create and open the new index.html file
-    text_file = open("index.html", "w")
+    # create and open the new report.html file
+    text_file = open("report.html", "w")
     text_file.write(header)
     text_file.close()
 
-    # open and append index.html with the human-readable date time stored in the report_timestamp variable
-    text_file = open("index.html", "a") # append mode
+    # open and append report.html with the human-readable date time stored in the report_timestamp variable
+    text_file = open("report.html", "a") # append mode
     text_file.write(report_timestamp)
     text_file.close()
 
-    # open and append index.html with a single html table from urlReport(), or as an array of html tables returned by urlReportLst or urlReportIPLst
-    text_file = open("index.html", "a") # append mode
-    # iterate through the html array and write all the html tables to index.html
+    # open and append report.html with a single html table from urlReport(), or as an array of html tables returned by urlReportLst or urlReportIPLst
+    text_file = open("report.html", "a") # append mode
+    # iterate through the html array and write all the html tables to report.html
     for x in html:
         text_file.write(x)
     text_file.close()
 
-    # open and append index.html with the closing tags stored in the footer variable
-    text_file = open("index.html", "a") # append mode
+    # open and append report.html with the closing tags stored in the footer variable
+    text_file = open("report.html", "a") # append mode
     text_file.write(footer)
     text_file.close()
 
