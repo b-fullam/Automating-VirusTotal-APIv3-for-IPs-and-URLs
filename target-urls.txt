@@ -1,5 +1,5 @@
 google.com
-yahoo.com
+https://yahoo.com
 python.org
 ttp://bing.com
 https://www.github.com

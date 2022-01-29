@@ -1,15 +1,22 @@
 # Automating-VirusTotal-APIv3-for-IPs-and-URLs
 ### Automating VirusTotal's API(v3) for IP address and URL analysis with HTML Reporting
 
-An analyst can choose to enter a single IP address or URL, or select either a list of IP addresses or URLs to be submitted to VirusTotal's API(v3).
+Enter a single IP address or URL, or select either a list of IP addresses or URLs to be submitted to VirusTotal's API(v3) for analysis.
 
 ``` nolinenumbers
+usage: vt-ip-url-analysis.py [-h] [-s SINGLE_ENTRY] [-i IP_LIST] [-u URL_LIST] [-V]
 
-Enter: 
-'1' for single IP or URL entry, 
-'2' to import a list of URLs, or 
-'3' to import a list of IPs:
+Python Automated VT API v3 IP address and URL analysis 2.0 by Brett Fullam
 
+optional arguments:
+  -h, --help                show this help message and exit
+  -s SINGLE_ENTRY, --single-entry SINGLE_ENTRY
+                            ip or url for analysis
+  -i IP_LIST, --ip-list IP_LIST
+                            bulk ip address analysis
+  -u URL_LIST, --url-list URL_LIST
+                            bulk url analysis
+  -V, --version             show program version
 ```
 
 The results returned by VT's API(v3) are then filtered for high-level analysis to quickly determine whether entries are harmless or need further investigation.
@@ -24,14 +31,12 @@ For more information about this script, check out my article on "[Security Autom
 
 1. Download the script or use git to clone the repository
 
-2. Install dependencies.  This script was created using Python3, and I've included a requirements.txt file listing the necessary dependencies.
+2. Install dependencies.  This script was created using Python3, and I've included a requirements.txt file listing the necessary dependencies.  More information on how to install dependencies for this project can be found in my article ["Security Automation with Python — IP address and URL analysis via VirusTotal's API v3 with HTML Reporting"](https://www.brettfullam.com/security-automation-with-python-ip-address-and-url-analysis-via-virus-totals-api-v-3-with-html-reporting/).
 
 3. You'll also need to create a .env file in the same directory as the Python script. Inside the .env file add the following code and insert your VirusTotal API key as indicated:
 
-``` nolinenumbers
-
+``` noLineNumbers
 API_KEY1=<insert your vt API key here>
-
 ```
 
 > ALWAYS remember to make sure you add ".env" to your .gitignore file to keep it from being sent to github and exposing your API key in the repository.  For more information on working with .env files, take a look at Drew Seewald's article ["Using dotenv to Hide Sensitive Information in Python--Hide your passwords and API tokens to make your code more secure"](https://towardsdatascience.com/using-dotenv-to-hide-sensitive-information-in-python-77ab9dfdaac8 "Using dotenv to Hide Sensitive Information in Python").

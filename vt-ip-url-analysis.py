@@ -1,12 +1,29 @@
+import argparse
+import time
+from pathlib import Path
 import requests
 import re
 import pandas as pd
 import json
 import base64
 import os
-import time
 import hashlib
 from dotenv import load_dotenv
+
+
+# //////////////////////////////////////////////
+#
+# Python Automated VT API v3 IP address and URL analysis 2.0
+# by Brett Fullam
+#
+# Accepts single entries for IP address or URL
+# Performs bulk IP address analysis
+# Performs bulk URL Analysis
+#
+# Outputs HTML report with hypertext links per entry
+# to VirusTotal's web-based GUI for a full report
+#
+# //////////////////////////////////////////////
 
 
 # load_dotenv will look for a .env file and if it finds one it will load the environment variables from it
@@ -20,6 +37,18 @@ and exposing your API key in the repository
 
 # retrieve API key from .env file and store in a variable
 API_KEY = os.getenv("API_KEY1")
+
+
+# ////////////////////////////////// START Initiate the parser
+
+parser = argparse.ArgumentParser(description="Python Automated VT API v3 IP address and URL analysis 2.0 by Brett Fullam")
+parser.add_argument("-s", "--single-entry", help="ip or url for analysis")
+parser.add_argument("-i", "--ip-list", help="bulk ip address analysis")
+parser.add_argument("-u", "--url-list", help="bulk url analysis")
+parser.add_argument("-V", "--version", help="show program version", action="store_true")
+
+# ////////////////////////////////// END Initiate the parser
+
 
 # initialize dataframe variable
 dataframe = []
@@ -42,7 +71,7 @@ def urlReport(arg):
     # Encode the user submitted url to base64 and strip the "==" from the end
     url_id = base64.urlsafe_b64encode(target_url.encode()).decode().strip("=")
 
-    print(url_id)
+    # print(url_id)
 
     # amend the virustotal apiv3 url to include the unique generated url_id
     url = "https://www.virustotal.com/api/v3/urls/" + url_id
@@ -173,10 +202,10 @@ def urlReport(arg):
 
 # this function will handle importing a user defined list of urls, validate each url, and store them in an array called lst.  Then each validated entry will be submitted to the urlReport() function, and an html table will be returned for each of them and stored in an array called html_table_array. 
 
-def urlReportLst():
+def urlReportLst(arg):
     print("Option 2:")
     # open user defined list from file path/name
-    with open(input("\nEnter file name and/or path: ")) as fcontent:
+    with open(arg) as fcontent:
         fstring = fcontent.readlines()
     # regex statement to validate/normalize the content of the user defined list
     pattern = re.compile(r'(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?')
@@ -218,10 +247,10 @@ def urlReportLst():
 
 # this function will handle importing a user defined list of IPs, sort each IP as public or private IP range, and store them in separate arrays called Public_IPs or Private_IPs.  Then, since we are only interested in public IPs, only the IPs stored in the Public_IPs array will be validated and submitted to the urlReport() function.  An html table will be returned for each of the IPs and stored in an array called html_table_array. 
 
-def urlReportIPLst():
+def urlReportIPLst(arg):
     # open user defined list from file path/name
     print("Option 3:")
-    with open(input("\nEnter file name and/or path: ")) as fh:
+    with open(arg) as fh:
         string = fh.readlines()
 
     # regex pattern to filter-sort Private and Public IP addresses
@@ -315,7 +344,7 @@ def outputHTML():
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automated VirusTotal Report | APIv3</title>
+    <title>Automated VirusTotal Analysis Report | API v3</title>
         <style>
             body {
             font-family: Sans-Serif;
@@ -376,7 +405,7 @@ def outputHTML():
         </style>
     </head>
     <body>
-    <h1 class="reportHeader">Automated VirusTotal Report</h1>
+    <h1 class="reportHeader">Automated VirusTotal Analysis Report</h1>
     <h2>VirusTotal API v3</h2>
     """
     # add report timestamp
@@ -414,29 +443,30 @@ def outputHTML():
 
 
 
-# ////////////////////////////////// MAIN
 
-def main():
-    print("\nAutomated VirusTotal IP and URL Report Requests \nw/HMTL Reporting")
+# ////////////////////////////////// START Read arguments from the command line
 
-    # Prompt user for input of a single IP or single URL, or to import a list of IP addresses, or to import a list of urls
-    single_or_multiple_ips = int(input("\nEnter: \n'1' for single IP or URL entry, \n'2' to import a list of URLs, or \n'3' to import a list of IPs: \n\n"))
-    
-    # Conditional statement to handle user input and select the appropriate function
-    if single_or_multiple_ips == 1:
-        urlReport(input("\nEnter url or ip: "))
-        print(dataframe)
-        outputHTML()
-    elif single_or_multiple_ips == 2:
-        urlReportLst()
-        outputHTML()
-    elif single_or_multiple_ips == 3:
-        urlReportIPLst()
-        outputHTML()
-    else:
-        print("\n Please enter a valid option! \n")
-        #main()
-    
-# ////////////////////////////////// END MAIN
+args = parser.parse_args()
 
-main()
+
+# Check for --single-entry or -s
+if args.single_entry:
+    urlReport(args.single_entry)
+    print(dataframe)
+    outputHTML()
+# Check for --ip-list or -i
+elif args.ip_list:
+    urlReportIPLst(args.ip_list)
+    outputHTML()
+# Check for --url-list or -u
+elif args.url_list:
+    urlReportLst(args.url_list)
+    outputHTML()
+# Check for --version or -V
+elif args.version:
+    print("VT API v3 IP address and URL analysis 2.0")
+# Print usage information if no arguments are provided
+else:
+    print("usage: vt-ip-url-analysis.py [-h] [-s SINGLE_ENTRY] [-i IP_LIST] [-u URL_LIST] [-V]")
+
+# ////////////////////////////////// END Read arguments from the command line
