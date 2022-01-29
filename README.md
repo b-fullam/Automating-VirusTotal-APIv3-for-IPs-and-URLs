@@ -29,6 +29,8 @@ python3 vt-ip-url-analysis.py -s google.com
 
 The results returned by VT's API(v3) are then filtered for high-level analysis to quickly determine whether entries are harmless or need further investigation.
 
+![Security Automation Python DNS Lookups](https://www.brettfullam.com/static/1bc2c826633bfac4fdb3f31b637ee33e/69b48/security-automation-virustotal-api-v3.jpg)
+
 The script also generates a hypertext link to VirusTotal's web-based GUI for each entry allowing the analyst seamless access to additional information directly from the HTML report.
 
 The generated HTML report, named "report.html", is saved in the same directory that the Python script resides.
